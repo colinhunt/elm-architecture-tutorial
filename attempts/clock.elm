@@ -76,13 +76,8 @@ view model =
         line [ x1 "50", y1 "50", x2 (getCoord cos angle), y2 (getCoord sin angle), stroke "#023963" ] []
       ) (Array.initialize 12 (\n -> turns (toFloat n)/12)))
 
-    adjust turns = turns + 0.75
-
     angle timeGetter =
-      let
-        time = timeGetter model.time
-      in
-        turns (adjust time - toFloat (floor time))
+      turns ((timeGetter model.time) + 0.75)
 
     secondHand =
       {x = getCoord cos (angle Time.inMinutes), y = getCoord sin (angle Time.inMinutes) }
@@ -92,7 +87,7 @@ view model =
 
     hourHand =
       let
-        inHalfDays = (\time -> ((Time.inHours time) + 5)/12)
+        inHalfDays time = ((Time.inHours time) + 5)/12
       in
         {x = getCoord cos (angle inHalfDays), y = getCoord sin (angle inHalfDays) }
 
