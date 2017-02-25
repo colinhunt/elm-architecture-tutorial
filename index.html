@@ -8664,14 +8664,9 @@ var _elm_lang$elm_architecture_tutorial$Main$Pause = function (a) {
 	return {ctor: 'Pause', _0: a};
 };
 var _elm_lang$elm_architecture_tutorial$Main$view = function (model) {
-	var adjust = function (turns) {
-		return turns + 0.75;
-	};
 	var angle = function (timeGetter) {
-		var time = timeGetter(model.time);
 		return _elm_lang$core$Basics$turns(
-			adjust(time) - _elm_lang$core$Basics$toFloat(
-				_elm_lang$core$Basics$floor(time)));
+			timeGetter(model.time) + 0.75);
 	};
 	var getCoord = F2(
 		function (f, angle) {
